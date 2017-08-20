@@ -3,10 +3,10 @@
 A webpack 3 based boilerplate for building web apps.
 
 ## Features:
-* [Pug](pugjs.org) as a template engine
-* [SCSS](sass-lang.com) preprocessor for CSS ([autoprefixer](https://github.com/postcss/autoprefixer) included)
-* JS linting with [Eslint](eslint.org)
-* CSS linting with [Stylelint](Stylelint.io)
+* [Pug](https://pugjs.org) as a template engine
+* [SCSS](http://sass-lang.com) preprocessor for CSS ([autoprefixer](https://github.com/postcss/autoprefixer) included)
+* JS linting with [Eslint](https://eslint.org)
+* CSS linting with [Stylelint](http://stylelint.io)
 
 ## Getting started:
 * Clone the repo
