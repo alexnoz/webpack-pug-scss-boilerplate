@@ -9,6 +9,10 @@
     "build": "webpack --env production",
     "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --open --hot --env development\""
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexnoz/webpack-pug-scss-boilerplate.git"
+  },
   "keywords": [
     "boilerplate",
     "webpack",
