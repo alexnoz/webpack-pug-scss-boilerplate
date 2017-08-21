@@ -32,12 +32,11 @@ module.exports = {
     'import/namespace': 2,
     'import/default': 2,
     'import/export': 2,
-    'comma-dangle': ['error', 'always-multiline'],
     indent: ['error', 2],
     'linebreak-style': 0,
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'no-unused-vars': ['warn'],
-    'no-console': 0,
+    'no-console': 1,
   },
 };
