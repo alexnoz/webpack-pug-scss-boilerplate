@@ -1,4 +1,4 @@
-# Webpack Pug Scss Boilerplate
+# Webpack Pug SCSS Boilerplate
 
 A webpack 3 based boilerplate for building web apps.
 
