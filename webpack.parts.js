@@ -40,7 +40,14 @@ exports.loadPug = (options) => ({
     rules: [
       {
         test:/\.pug$/,
-        loader: 'pug-loader',
+        use: [
+          {
+            loader: 'html-loader',
+          },
+          {
+            loader: 'pug-html-loader'
+          }
+        ],
         options,
       },
     ],
