@@ -8,10 +8,13 @@ A webpack 3 based boilerplate for building web apps.
 * JS linting with [Eslint](https://eslint.org)
 * CSS linting with [Stylelint](http://stylelint.io)
 
-## Getting started:
+## Usage:
+* Clone the repo via `git clone https://github.com/alexnoz/webpack-pug-scss-boilerplate.git`
+* `cd webpack-pug-scss-boilerplate`
 * Run `yarn install` to fetch all the dependencies
-* Run `yarn start` to run the [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+* Run `yarn start` to start the [webpack-dev-server](https://github.com/webpack/webpack-dev-server) (`localhost:8080` will be opened automatically)
 * Start developing
+* When you are done, run `yarn run build` to get the prod version of your app
 
 
 
