@@ -120,7 +120,7 @@ const productionConfig = merge([
     use: [parts.autoprefix(), cssPreprocessorLoader],
   }),
   parts.purifyCSS({
-    paths: glob.sync(`${PATHS.app}/**/*.js`, { nodir: true }),
+    paths: glob.sync(`${PATHS.app}/**/*.+(pug|js)`, { nodir: true }),
     styleExtensions: ['.css', '.scss'],
   }),
   parts.minifyCSS({
