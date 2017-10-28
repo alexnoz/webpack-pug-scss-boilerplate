@@ -1,18 +1,18 @@
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const PurifyCSSPlugin = require('purifycss-webpack');
-const BabiliPlugin = require('babili-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const PurifyCSSPlugin = require('purifycss-webpack')
+const BabiliPlugin = require('babili-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const publicPath = '/';
+const publicPath = '/'
 
-exports.publicPath = publicPath;
+exports.publicPath = publicPath
 
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     watchOptions: {
-      ignored: /node_modules/,
+      ignored: /node_modules/
     },
     publicPath,
     // Enable history API fallback so HTML5 History API based
@@ -35,35 +35,35 @@ exports.devServer = ({ host, port } = {}) => ({
     // overlay: true is equivalent
     overlay: {
       errors: true,
-      warnings: true,
-    },
-  },
-});
+      warnings: true
+    }
+  }
+})
 
 exports.loadPug = (options) => ({
   module: {
     rules: [
       {
-        test:/\.pug$/,
+        test: /\.pug$/,
         use: [
           {
-            loader: 'html-loader',
+            loader: 'html-loader'
           },
           {
             loader: 'pug-html-loader'
           }
         ],
-        options,
-      },
-    ],
-  },
-});
+        options
+      }
+    ]
+  }
+})
 
 exports.extractBundles = (bundles) => ({
   plugins: bundles.map((bundle) => (
     new webpack.optimize.CommonsChunkPlugin(bundle)
-  )),
-});
+  ))
+})
 
 exports.lintJS = ({ include, exclude, options }) => ({
   module: {
@@ -74,42 +74,42 @@ exports.lintJS = ({ include, exclude, options }) => ({
         exclude,
         enforce: 'pre',
         loader: 'eslint-loader',
-        options,
-      },
-    ],
-  },
-});
+        options
+      }
+    ]
+  }
+})
 
 const sharedCSSLoaders = [
   {
     loader: 'css-loader',
     options: {
-      localIdentName: '[hash:base64:5]',
-    },
-  },
-];
+      localIdentName: '[hash:base64:5]'
+    }
+  }
+]
 
 exports.autoprefix = () => ({
   loader: 'postcss-loader',
   options: {
-    plugins: () => [require('autoprefixer')],
-  },
-});
+    plugins: () => [require('autoprefixer')]
+  }
+})
 
 exports.purifyCSS = (options) => ({
   plugins: [
-    new PurifyCSSPlugin(options),
-  ],
-});
+    new PurifyCSSPlugin(options)
+  ]
+})
 
 exports.minifyCSS = ({ options }) => ({
   plugins: [
     new OptimizeCSSAssetsPlugin({
       cssProcessorOptions: options,
-      canPrint: true, //false for analyzer
-    }),
-  ],
-});
+      canPrint: true // false for analyzer
+    })
+  ]
+})
 
 exports.loadCSS = ({ include, exclude, use } = {}) => ({
   module: {
@@ -122,21 +122,21 @@ exports.loadCSS = ({ include, exclude, use } = {}) => ({
 
         use: [
           {
-            loader: 'style-loader',
+            loader: 'style-loader'
           },
-          ...sharedCSSLoaders.concat(use),
-        ],
-      },
-    ],
-  },
-});
+          ...sharedCSSLoaders.concat(use)
+        ]
+      }
+    ]
+  }
+})
 
 exports.extractCSS = ({ include, exclude, use } = {}) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
     filename: 'styles/[name].[contenthash:8].css',
     allChunks: true
-  });
+  })
 
   return {
     module: {
@@ -149,13 +149,13 @@ exports.extractCSS = ({ include, exclude, use } = {}) => {
 
           use: plugin.extract({
             use: sharedCSSLoaders.concat(use),
-            fallback: 'style-loader',
-          }),
-        },
-      ],
+            fallback: 'style-loader'
+          })
+        }
+      ]
     },
-    plugins: [plugin],
-  };
+    plugins: [plugin]
+  }
 };
 
 exports.loadImages = ({ include, exclude, options } = {}) => ({
@@ -169,12 +169,12 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
 
         use: {
           loader: 'url-loader',
-          options,
-        },
-      },
-    ],
-  },
-});
+          options
+        }
+      }
+    ]
+  }
+})
 
 exports.optimizeImages = ({ include, exclude } = {}) => ({
   module: {
@@ -195,7 +195,7 @@ exports.optimizeImages = ({ include, exclude } = {}) => ({
             // optimizationLevel: 7,
 
             gifsicle: {
-              interlaced: false,
+              interlaced: false
             },
 
             /*
@@ -205,18 +205,18 @@ exports.optimizeImages = ({ include, exclude } = {}) => ({
 
             svgo: {
 
-            },*/
+            }, */
 
             pngquant: {
               quality: '65-90',
-              speed: 4,
-            },
-          },
-        },
-      },
-    ],
-  },
-});
+              speed: 4
+            }
+          }
+        }
+      }
+    ]
+  }
+})
 
 exports.loadFonts = ({ include, exclude, options } = {}) => ({
   module: {
@@ -230,12 +230,12 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
 
         use: {
           loader: 'file-loader',
-          options,
-        },
-      },
-    ],
-  },
-});
+          options
+        }
+      }
+    ]
+  }
+})
 
 exports.loadJS = ({ include, exclude, options } = {}) => ({
   module: {
@@ -247,27 +247,27 @@ exports.loadJS = ({ include, exclude, options } = {}) => ({
         exclude,
 
         loader: 'babel-loader',
-        options,
-      },
-    ],
-  },
-});
+        options
+      }
+    ]
+  }
+})
 
 exports.minifyJS = () => ({
   plugins: [
-    new BabiliPlugin(),
-  ],
-});
+    new BabiliPlugin()
+  ]
+})
 
 exports.setFreeVariable = (key, value) => {
-  const env = {};
-  env[key] = JSON.stringify(value);
+  const env = {}
+  env[key] = JSON.stringify(value)
 
   return {
     plugins: [
-      new webpack.DefinePlugin(env),
-    ],
-  };
+      new webpack.DefinePlugin(env)
+    ]
+  }
 };
 
 exports.page = ({
@@ -277,7 +277,7 @@ exports.page = ({
   ),
   title,
   entry,
-  chunks,
+  chunks
 } = {}) => ({
   entry,
   plugins: [
@@ -285,7 +285,7 @@ exports.page = ({
       filename: `${path && path + '/'}index.pug`,
       template,
       title,
-      chunks,
-    }),
-  ],
-});
+      chunks
+    })
+  ]
+})
