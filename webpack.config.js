@@ -69,7 +69,7 @@ const commonConfig = merge([
   parts.loadFonts({
     include: PATHS.app,
     options: {
-      name: './fonts/[name].[hash:8].[ext]',
+      name: 'fonts/[name].[hash:8].[ext]',
     },
   }),
 ]);
@@ -77,8 +77,8 @@ const commonConfig = merge([
 const productionConfig = merge([
   {
     output: {
-      chunkFilename: './scripts/[name].[chunkhash:8].js',
-      filename: './scripts/[name].[chunkhash:8].js',
+      chunkFilename: 'scripts/[name].[chunkhash:8].js',
+      filename: 'scripts/[name].[chunkhash:8].js',
     },
     performance: {
       hints: 'warning', // 'error' or false are valid too
@@ -138,7 +138,7 @@ const productionConfig = merge([
     include: PATHS.app,
     options: {
       limit: 15000,
-      name: './images/[name].[hash:8].[ext]',
+      name: 'images/[name].[hash:8].[ext]',
     },
   }),
   // should go after loading images
