@@ -5,11 +5,16 @@ const BabiliPlugin = require('babili-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const publicPath = '/';
+
+exports.publicPath = publicPath;
+
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     watchOptions: {
       ignored: /node_modules/,
     },
+    publicPath,
     // Enable history API fallback so HTML5 History API based
     // routing works. Good for complex setups.
     historyApiFallback: true,

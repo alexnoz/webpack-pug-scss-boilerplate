@@ -51,6 +51,7 @@ const commonConfig = merge([
     },
     output: {
       path: PATHS.build,
+      publicPath: parts.publicPath
     },
     plugins: [
       new HtmlPlugin({
