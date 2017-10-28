@@ -3,23 +3,22 @@ module.exports = {
     browser: true,
     commonjs: true,
     es6: true,
-    node: true,
+    node: true
   },
   plugins: ['import', 'promise', 'compat', 'node'],
   extends: [
-    'eslint:recommended',
     'plugin:promise/recommended',
-    // "plugin:node/recommended"
+    'standard'
   ],
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
-    ecmaVestion: 7,
+    ecmaVestion: 8,
     ecmaFeatures: {
       sourceType: 'module',
       jsx: true
     },
-    allowImportExportEverywhere: true,
+    allowImportExportEverywhere: true
   },
   rules: {
     'promise/always-return': 0,
@@ -32,11 +31,6 @@ module.exports = {
     'import/namespace': 2,
     'import/default': 2,
     'import/export': 2,
-    indent: ['error', 2],
-    'linebreak-style': 0,
-    quotes: ['error', 'single'],
-    semi: ['error', 'always'],
-    'no-unused-vars': ['warn'],
-    'no-console': 1,
-  },
-};
+    'no-console': 1
+  }
+}
