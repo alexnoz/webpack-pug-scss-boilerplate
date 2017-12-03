@@ -156,7 +156,7 @@ exports.extractCSS = ({ include, exclude, use } = {}) => {
     },
     plugins: [plugin]
   }
-};
+}
 
 exports.loadImages = ({ include, exclude, options } = {}) => ({
   module: {
@@ -268,7 +268,7 @@ exports.setFreeVariable = (key, value) => {
       new webpack.DefinePlugin(env)
     ]
   }
-};
+}
 
 exports.page = ({
   path = '',
