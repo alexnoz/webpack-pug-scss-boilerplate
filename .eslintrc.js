@@ -22,6 +22,7 @@ module.exports = {
   },
   rules: {
     'promise/always-return': 0,
+    'promise/avoid-new': 0,
     'compat/compat': 1,
     'node/no-deprecated-api': 2,
     'node/no-extraneous-require': 2,
