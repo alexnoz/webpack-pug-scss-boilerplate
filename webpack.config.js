@@ -46,9 +46,7 @@ const commonConfig = merge([
       unsafeCache: true,
       symlinks: false
     },
-    entry: {
-      app: `${PATHS.app}/scripts`
-    },
+    entry: `${paths.app}/scripts`,
     output: {
       path: PATHS.build,
       publicPath: parts.publicPath
