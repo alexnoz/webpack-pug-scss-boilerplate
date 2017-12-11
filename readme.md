@@ -12,6 +12,8 @@ A webpack 3 based boilerplate for building web apps.
   * [compat](https://github.com/amilajack/eslint-plugin-compat)
 * CSS linting with [Stylelint](http://stylelint.io)
 
+>Note: There is also the [feature/modern-bundle](https://github.com/alexnoz/webpack-pug-scss-boilerplate/tree/feature/modern-bundle) branch where `webpack` produces [two production bundles](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) (legacy & modern). It is experimental so use it with caution.
+
 ## Usage:
 * Clone the repo via `git clone https://github.com/alexnoz/webpack-pug-scss-boilerplate.git`
 * `cd webpack-pug-scss-boilerplate`
