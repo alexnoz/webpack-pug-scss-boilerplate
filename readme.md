@@ -3,7 +3,7 @@
 A webpack 3 based boilerplate for building web apps.
 
 ## Features:
-* [Two production bundles](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) (for legacy & modern browsers) (for legacy & modern browsers)
+* [Two production bundles](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) (for legacy & modern browsers)
 * [Pug](https://pugjs.org) as a template engine
 * [SCSS](http://sass-lang.com) preprocessor for CSS ([autoprefixer](https://github.com/postcss/autoprefixer) included)
 * JS linting with [Eslint](https://eslint.org), extends [eslint-config-standard](https://github.com/standard/eslint-config-standard), includes the following plugins:
