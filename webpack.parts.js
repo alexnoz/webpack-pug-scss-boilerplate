@@ -35,7 +35,7 @@ exports.devServer = ({ host, port } = {}) => ({
     // overlay: true is equivalent
     overlay: {
       errors: true,
-      warnings: true
+      warnings: false
     }
   }
 })
