@@ -13,7 +13,7 @@ module.exports = {
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
-    ecmaVersion: 8,
+    ecmaVersion: 9,
     ecmaFeatures: {
       sourceType: 'module',
       jsx: true
