@@ -1,6 +1,6 @@
 const path = require('path')
-const glob = require('glob')
 
+const glob = require('glob')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlPlugin = require('html-webpack-plugin')
@@ -168,7 +168,7 @@ const productionConfig = merge([
     }
   }),
   // should go after loading images
-  parts.optimizeImages(),
+  parts.optimizeImages()
 ])
 
 const developmentConfig = merge([
