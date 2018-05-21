@@ -134,10 +134,6 @@ const productionConfig = merge([
   }),
   // should go after loading images
   parts.optimizeImages(),
-  parts.setFreeVariable(
-    'process.env.NODE_ENV',
-    'production'
-  )
 ])
 
 const developmentConfig = merge([
