@@ -25,13 +25,13 @@ const lintJSOptions = {
   formatter: require('eslint-friendly-formatter')
 }
 
-const PATHS = {
+const paths = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
 }
 
 const lintStylesOptions = {
-  context: path.resolve(__dirname, `${PATHS.app}/styles`),
+  context: path.resolve(__dirname, `${paths.app}/styles`),
   syntax: 'scss',
   emitErrors: false
   // fix: true,
@@ -41,14 +41,14 @@ const cssPreprocessorLoader = { loader: 'fast-sass-loader' }
 
 const commonConfig = merge([
   {
-    context: PATHS.app,
+    context: paths.app,
     resolve: {
       unsafeCache: true,
       symlinks: false
     },
-    entry: `${PATHS.app}/scripts`,
+    entry: `${paths.app}/scripts`,
     output: {
-      path: PATHS.build,
+      path: paths.build,
       publicPath: parts.publicPath
     },
     plugins: [
@@ -63,9 +63,9 @@ const commonConfig = merge([
     }
   },
   parts.loadPug(),
-  parts.lintJS({ include: PATHS.app, options: lintJSOptions }),
+  parts.lintJS({ include: paths.app, options: lintJSOptions }),
   parts.loadFonts({
-    include: PATHS.app,
+    include: paths.app,
     options: {
       name: 'fonts/[name].[hash:8].[ext]'
     }
@@ -97,7 +97,7 @@ const productionConfig = merge([
       new webpack.HashedModuleIdsPlugin(),
       new ManifestPlugin(),
       new BundleAnalyzerPlugin(),
-      new CleanPlugin(PATHS.build)
+      new CleanPlugin(paths.build)
     ]
   },
   parts.minifyJS({
@@ -137,17 +137,17 @@ const productionConfig = merge([
     cache: true
   }),
   parts.loadJS({
-    include: PATHS.app,
+    include: paths.app,
     options: {
       cacheDirectory: true
     }
   }),
   parts.extractCSS({
-    include: PATHS.app,
+    include: paths.app,
     use: [parts.autoprefix(), cssPreprocessorLoader]
   }),
   parts.purifyCSS({
-    paths: glob.sync(`${PATHS.app}/**/*.+(pug|js)`, { nodir: true }),
+    paths: glob.sync(`${paths.app}/**/*.+(pug|js)`, { nodir: true }),
     styleExtensions: ['.css', '.scss']
   }),
   parts.minifyCSS({
@@ -161,7 +161,7 @@ const productionConfig = merge([
     }
   }),
   parts.loadImages({
-    include: PATHS.app,
+    include: paths.app,
     options: {
       limit: 15000,
       name: 'images/[name].[hash:8].[ext]'
@@ -179,8 +179,8 @@ const developmentConfig = merge([
     host: process.env.HOST,
     port: process.env.PORT
   }),
-  parts.loadCSS({ include: PATHS.app, use: [cssPreprocessorLoader] }),
-  parts.loadImages({include: PATHS.app})
+  parts.loadCSS({ include: paths.app, use: [cssPreprocessorLoader] }),
+  parts.loadImages({include: paths.app})
 ])
 
 module.exports = env => {
