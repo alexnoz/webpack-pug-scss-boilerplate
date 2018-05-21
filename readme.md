@@ -1,6 +1,6 @@
 # Webpack Pug SCSS Boilerplate
 
-A webpack 3 based boilerplate for building web apps.
+A webpack 4 based boilerplate for building web apps.
 
 ## Features:
 * [Pug](https://pugjs.org) as a template engine
