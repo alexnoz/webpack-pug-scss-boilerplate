@@ -138,13 +138,7 @@ const productionConfig = merge([
 
 const developmentConfig = merge([
   {
-    // devtool: 'cheap-module-eval-source-map',
-    output: {
-      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'
-    },
-    plugins: [
-      new webpack.NamedModulesPlugin()
-    ]
+    mode: 'development'
   },
   parts.devServer({
     host: process.env.HOST,
