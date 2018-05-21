@@ -59,12 +59,6 @@ exports.loadPug = (options) => ({
   }
 })
 
-exports.extractBundles = (bundles) => ({
-  plugins: bundles.map((bundle) => (
-    new webpack.optimize.CommonsChunkPlugin(bundle)
-  ))
-})
-
 exports.lintJS = ({ include, exclude, options }) => ({
   module: {
     rules: [

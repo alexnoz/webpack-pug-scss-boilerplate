@@ -74,6 +74,16 @@ const commonConfig = merge([
 
 const productionConfig = merge([
   {
+    mode: 'production',
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        name: 'vendors'
+      },
+      runtimeChunk: {
+        name: 'manifest'
+      }
+    },
     output: {
       chunkFilename: 'scripts/[name].[chunkhash:8].js',
       filename: 'scripts/[name].[chunkhash:8].js'
@@ -97,23 +107,6 @@ const productionConfig = merge([
       cacheDirectory: true
     }
   }),
-  parts.extractBundles([
-    {
-      name: 'vendor',
-
-      minChunks: ({ resource }) => (
-        resource &&
-        resource.indexOf('node_modules') >= 0 &&
-        resource.match(/\.js$/)
-      )
-
-    },
-    // should be the last definition
-    {
-      name: 'manifest',
-      minChunks: Infinity
-    }
-  ]),
   parts.extractCSS({
     include: PATHS.app,
     use: [parts.autoprefix(), cssPreprocessorLoader]
