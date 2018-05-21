@@ -1,9 +1,9 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack')
-const BabiliPlugin = require('babili-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const publicPath = '/'
 
@@ -247,10 +247,12 @@ exports.loadJS = ({ include, exclude, options } = {}) => ({
   }
 })
 
-exports.minifyJS = () => ({
-  plugins: [
-    new BabiliPlugin()
+exports.minifyJS = options => ({
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin(options)
   ]
+  }
 })
 
 exports.page = ({
