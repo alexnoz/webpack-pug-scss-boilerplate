@@ -1,7 +1,7 @@
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
@@ -97,12 +97,14 @@ exports.purifyCSS = (options) => ({
 })
 
 exports.minifyCSS = ({ options }) => ({
-  plugins: [
-    new OptimizeCSSAssetsPlugin({
-      cssProcessorOptions: options,
-      canPrint: true // false for analyzer
-    })
-  ]
+  optimization: {
+    minimizer: [
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: options,
+        canPrint: true // false for analyzer
+      })
+    ]
+  }
 })
 
 exports.loadCSS = ({ include, exclude, use } = {}) => ({
@@ -125,32 +127,26 @@ exports.loadCSS = ({ include, exclude, use } = {}) => ({
   }
 })
 
-exports.extractCSS = ({ include, exclude, use } = {}) => {
-  // Output extracted CSS to a file
-  const plugin = new ExtractTextPlugin({
-    filename: 'styles/[name].[contenthash:8].css',
-    allChunks: true
-  })
+exports.extractCSS = ({ include, exclude, use = [] } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
 
-  return {
-    module: {
-      rules: [
-        {
-          test: /\.scss$/,
+        include,
+        exclude,
 
-          include,
-          exclude,
-
-          use: plugin.extract({
-            use: sharedCSSLoaders.concat(use),
-            fallback: 'style-loader'
-          })
-        }
-      ]
-    },
-    plugins: [plugin]
-  }
-}
+        use: [MiniCssExtractPlugin.loader, ...sharedCSSLoaders, ...use]
+      }
+    ]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].[contenthash:8].css',
+      chunkFilename: 'styles/[id].[contenthash:8].css'
+    })
+  ]
+})
 
 exports.loadImages = ({ include, exclude, options } = {}) => ({
   module: {
@@ -251,7 +247,7 @@ exports.minifyJS = options => ({
   optimization: {
     minimizer: [
       new UglifyJsPlugin(options)
-  ]
+    ]
   }
 })
 
