@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const PurifyCSSPlugin = require('purifycss-webpack')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
