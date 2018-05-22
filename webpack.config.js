@@ -25,10 +25,27 @@ const lintJSOptions = {
   formatter: require('eslint-friendly-formatter')
 }
 
-const paths = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
-}
+/*
+  To move all assets to some static folder
+  getPaths({ staticDir: 'some-name' })
+
+  To rename asset build folder
+  getPaths({ js: 'some-name' })
+
+  To move assets to the root build folder
+  getPaths({ css: '' })
+
+  Defaults values:
+     sourceDir - 'app',
+      buildDir - 'build',
+     staticDir - '',
+
+        images - 'images',
+         fonts - 'fonts',
+           css - 'styles',
+            js - 'scripts'
+*/
+const paths = getPaths()
 
 const lintStylesOptions = {
   context: path.resolve(__dirname, `${paths.app}/styles`),
@@ -67,7 +84,7 @@ const commonConfig = merge([
   parts.loadFonts({
     include: paths.app,
     options: {
-      name: 'fonts/[name].[hash:8].[ext]'
+      name: `${paths.fonts}/[name].[hash:8].[ext]`
     }
   })
 ])
@@ -85,8 +102,8 @@ const productionConfig = merge([
       }
     },
     output: {
-      chunkFilename: 'scripts/[name].[chunkhash:8].js',
-      filename: 'scripts/[name].[chunkhash:8].js'
+      chunkFilename: `${paths.js}/[name].[chunkhash:8].js`,
+      filename: `${paths.js}/[name].[chunkhash:8].js`
     },
     performance: {
       hints: 'warning', // 'error' or false are valid too
@@ -146,8 +163,8 @@ const productionConfig = merge([
     include: paths.app,
     use: [parts.autoprefix(), cssPreprocessorLoader],
     options: {
-      filename: `styles/[name].[contenthash:8].css`,
-      chunkFilename: `styles/[id].[contenthash:8].css`
+      filename: `${paths.css}/[name].[contenthash:8].css`,
+      chunkFilename: `${paths.css}/[id].[contenthash:8].css`
     }
   }),
   parts.purifyCSS({
@@ -168,7 +185,7 @@ const productionConfig = merge([
     include: paths.app,
     options: {
       limit: 15000,
-      name: 'images/[name].[hash:8].[ext]'
+      name: `${paths.images}/[name].[hash:8].[ext]`
     }
   }),
   // should go after loading images
@@ -195,4 +212,28 @@ module.exports = env => {
   }
 
   return merge(commonConfig, developmentConfig)
+}
+
+function getPaths ({
+  sourceDir = 'app',
+  buildDir = 'build',
+  staticDir = '',
+  images = 'images',
+  fonts = 'fonts',
+  js = 'scripts',
+  css = 'styles'
+} = {}) {
+  const assets = { images, fonts, js, css }
+
+  return Object.keys(assets).reduce((obj, assetName) => {
+    const assetPath = assets[assetName]
+
+    obj[assetName] = !staticDir ? assetPath : `${staticDir}/${assetPath}`
+
+    return obj
+  }, {
+    app: path.join(__dirname, sourceDir),
+    build: path.join(__dirname, buildDir),
+    staticDir
+  })
 }
