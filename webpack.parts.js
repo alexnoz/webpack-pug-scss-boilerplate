@@ -126,7 +126,7 @@ exports.loadCSS = ({ include, exclude, use } = {}) => ({
   }
 })
 
-exports.extractCSS = ({ include, exclude, use = [] } = {}) => ({
+exports.extractCSS = ({ include, exclude, options, use = [] } = {}) => ({
   module: {
     rules: [
       {
@@ -140,10 +140,7 @@ exports.extractCSS = ({ include, exclude, use = [] } = {}) => ({
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'styles/[name].[contenthash:8].css',
-      chunkFilename: 'styles/[id].[contenthash:8].css'
-    })
+    new MiniCssExtractPlugin(options)
   ]
 })
 

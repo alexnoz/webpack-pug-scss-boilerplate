@@ -144,7 +144,11 @@ const productionConfig = merge([
   }),
   parts.extractCSS({
     include: paths.app,
-    use: [parts.autoprefix(), cssPreprocessorLoader]
+    use: [parts.autoprefix(), cssPreprocessorLoader],
+    options: {
+      filename: `styles/[name].[contenthash:8].css`,
+      chunkFilename: `styles/[id].[contenthash:8].css`
+    }
   }),
   parts.purifyCSS({
     paths: glob.sync(`${paths.app}/**/*.+(pug|js)`, { nodir: true }),
