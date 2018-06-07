@@ -7,7 +7,7 @@ const HtmlPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const StylelintPlugin = require('stylelint-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const CleanPlugin = require('clean-webpack-plugin')
 
 const parts = require('./webpack.parts')
