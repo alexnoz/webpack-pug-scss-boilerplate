@@ -207,11 +207,10 @@ const developmentConfig = merge([
 module.exports = env => {
   process.env.BABEL_ENV = env
 
-  if (env === 'production') {
-    return merge(commonConfig, productionConfig)
-  }
-
-  return merge(commonConfig, developmentConfig)
+  return merge(
+    commonConfig,
+    env === 'production' ? productionConfig : developmentConfig
+  )
 }
 
 function getPaths ({
