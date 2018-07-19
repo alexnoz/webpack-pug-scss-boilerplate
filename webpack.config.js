@@ -94,8 +94,7 @@ const productionConfig = merge([
     mode: 'production',
     optimization: {
       splitChunks: {
-        chunks: 'all',
-        name: 'vendors'
+        chunks: 'all'
       },
       runtimeChunk: {
         name: 'manifest'
