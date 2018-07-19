@@ -11,7 +11,7 @@ module.exports = api => {
         {
           modules: false,
           targets: {
-            esmodules: isProd
+            esmodules: !isProd
           }
         }
       ]
