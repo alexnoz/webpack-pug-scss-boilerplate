@@ -68,6 +68,11 @@ const commonConfig = merge([
       path: paths.build,
       publicPath: parts.publicPath
     },
+    stats: {
+      warningsFilter: warning => warning.includes('entrypoint size limit'),
+      children: false,
+      modules: false
+    },
     plugins: [
       new HtmlPlugin({
         template: './index.pug'
