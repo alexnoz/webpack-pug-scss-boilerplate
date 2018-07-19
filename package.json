@@ -6,7 +6,8 @@
   "author": "Alex Nozdriukhin",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --env production",
+    "analyze": "webpack-bundle-analyzer ./stats.json",
+    "build": "webpack --env production --progress",
     "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --open --hot --env development\""
   },
   "repository": {
@@ -69,7 +70,8 @@
     "webpack-cli": "2.1.3",
     "webpack-dev-server": "^3.1.4",
     "webpack-manifest-plugin": "^2.0.2",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.2",
+    "webpack-stats-plugin": "0.2.1"
   },
   "browserslist": [
     "> 1%",

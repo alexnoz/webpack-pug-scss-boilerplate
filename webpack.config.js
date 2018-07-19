@@ -7,8 +7,8 @@ const HtmlPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const StylelintPlugin = require('stylelint-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const CleanPlugin = require('clean-webpack-plugin')
+const { StatsWriterPlugin } = require('webpack-stats-plugin')
 
 const parts = require('./webpack.parts')
 
@@ -113,9 +113,9 @@ const productionConfig = merge([
       maxAssetSize: 450000 // in bytes
     },
     plugins: [
+      new StatsWriterPlugin({ fields: null, filename: '../stats.json' }),
       new webpack.HashedModuleIdsPlugin(),
       new ManifestPlugin(),
-      new BundleAnalyzerPlugin(),
       new CleanPlugin(paths.build)
     ]
   },
