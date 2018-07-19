@@ -1,5 +1,5 @@
-import './../styles/main.scss'
+import '../styles/main.scss'
 
 if (process.env.NODE_ENV !== 'production') {
-  require('./../index.pug')
+  require('../index.pug')
 }
