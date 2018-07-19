@@ -96,9 +96,7 @@ const productionConfig = merge([
       splitChunks: {
         chunks: 'all'
       },
-      runtimeChunk: {
-        name: 'manifest'
-      }
+      runtimeChunk: 'single'
     },
     output: {
       chunkFilename: `${paths.js}/[name].[chunkhash:8].js`,
