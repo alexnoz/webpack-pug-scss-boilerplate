@@ -201,11 +201,12 @@ const developmentConfig = merge([
     port: process.env.PORT
   }),
   parts.loadCSS({ include: paths.app, use: [cssPreprocessorLoader] }),
-  parts.loadImages({include: paths.app})
+  parts.loadImages({ include: paths.app }),
+  parts.loadJS({ include: paths.app })
 ])
 
 module.exports = env => {
-  process.env.BABEL_ENV = env
+  process.env.NODE_ENV = env
 
   return merge(
     commonConfig,
