@@ -1,6 +1,6 @@
 {
   "name": "webpack-pug-scss-boiperplate",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A webpack boilerplate for building web apps",
   "main": "./app/scripts/index.js",
   "author": "Alex Nozdriukhin",
