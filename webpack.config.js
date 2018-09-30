@@ -120,13 +120,13 @@ const productionConfig = merge([
     ]
   },
   parts.minifyJS({
-    uglifyOptions: {
+    terserOptions: {
       parse: {
-      // we want uglify-js to parse ecma 8 code. However, we don't want it
-      // to apply any minfication steps that turns valid ecma 5 code
-      // into invalid ecma 5 code. This is why the 'compress' and 'output'
-      // sections only apply transformations that are ecma 5 safe
-      // https://github.com/facebook/create-react-app/pull/4234
+        // we want terser to parse ecma 8 code. However, we don't want it
+        // to apply any minfication steps that turns valid ecma 5 code
+        // into invalid ecma 5 code. This is why the 'compress' and 'output'
+        // sections only apply transformations that are ecma 5 safe
+        // https://github.com/facebook/create-react-app/pull/4234
         ecma: 8
       },
       compress: {
