@@ -116,7 +116,7 @@ const productionConfig = merge([
       new StatsWriterPlugin({ fields: null, filename: '../stats.json' }),
       new webpack.HashedModuleIdsPlugin(),
       new ManifestPlugin(),
-      new CleanPlugin(paths.build)
+      new CleanPlugin()
     ]
   },
   parts.minifyJS({
